@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div>
       <Topbar/>
-      <Girl />
+      <Boy />
       
     </div>
   )
