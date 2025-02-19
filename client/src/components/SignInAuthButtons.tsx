@@ -8,11 +8,11 @@ const SignInAuthButtons = () => {
         return null
     }
     const signInWithGoogle=()=>{
-        signIn.authenticateWithRedirect({
-            strategy:"oauth_google",
-            redirectUrl:"/sso-callback",
-            redirectUrlcomplete:"/auth-callback",
-        })
+        // signIn.authenticateWithRedirect({
+        //     strategy:"oauth_google",
+        //     redirectUrl:"/sso-callback",
+        //     redirectUrlcomplete:"/auth-callback",
+        // })
     }
   return <Button onClick={signInWithGoogle} variant={"secondary"} className="w-full text-white border-zinc-200 h-11">
         Continue with Google
