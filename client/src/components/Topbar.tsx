@@ -1,7 +1,6 @@
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
+// import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { BoomBox, LayoutDashboardIcon } from "lucide-react"
 import { Link } from "react-router-dom";
-import SignInAuthButtons from "./SignInAuthButtons";
 
 const Topbar = () => {
     const isAdmin = false;
@@ -20,14 +19,14 @@ const Topbar = () => {
             )}
 
 
-            <SignedIn>
+            {/* <SignedIn>
                 <SignedOut/>
             </SignedIn>
 
 
             <SignedOut>
                 <SignInAuthButtons />
-            </SignedOut>
+            </SignedOut> */}
 
 
         </div>
