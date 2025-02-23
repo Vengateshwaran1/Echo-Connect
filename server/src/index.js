@@ -16,11 +16,15 @@ import { connectDB } from "./lib/db.js";
 dotenv.config();
 
 const __dirname = path.resolve();
+
 const app = express();
+
 const PORT = process.env.PORT; 
 
 app.use(express.json());
+
 app.use(clerkMiddleware());
+
 app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: path.join(__dirname, "tmp"),

@@ -27,7 +27,7 @@ export const getStats = async (req, res, next) => {
             ])
         ]);
 
-        res.status(200).json({totalSongs, totalUsers, totalAlbums, uniqueArtists: uniqueArtists[0]?.count});
+        res.status(200).json({totalSongs, totalUsers, totalAlbums, uniqueArtists: uniqueArtists[0]?.count || 0});
 
     } catch (error) {
         next(error);
