@@ -3,38 +3,34 @@ import { useAuth } from "@clerk/clerk-react";
 import { Disc3 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const updateApiToken = async (token: string | null) => {
-    if (token) {
-        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    } else {
-        delete axiosInstance.defaults.headers.common['Authorization'];
-    }
-};
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const { getToken } = useAuth();
-    const [loading, setLoading] = useState(true);
+const updateApiToken = (token: string | null) => {
+    if(token){
+        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    }
+    else{
+        delete axiosInstance.defaults.headers.common["Authorization"];
+    }
+}
+
+const AuthProvider = ({children}:{children:React.ReactNode}) => {
+    const {getToken}=useAuth();
+    const [loading,setLoading]=useState(true);
 
     useEffect(() => {
         const initAuth = async () => {
             try {
                 const token = await getToken();
-                await updateApiToken(token);
+                updateApiToken(token);
             } catch (error) {
-                console.error("Error in authProvider:", error);
-                await updateApiToken(null);
-            } finally {
+                updateApiToken(null);
+                console.log("Error in auth provider", error);
+            }finally {
                 setLoading(false);
             }
         };
-        
         initAuth();
-
-        return () => {
-            updateApiToken(null); 
-        };
-    }, [getToken]);
-
+}, [getToken]);
     if (loading) {
         return (
             <div className="h-screen w-full flex justify-center items-center">
@@ -42,8 +38,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             </div>
         );
     }
-
-    return <>{children}</>;
+    return (
+        <>{children}</>
+    )
 };
-
-export default AuthProvider;
+export default AuthProvider
