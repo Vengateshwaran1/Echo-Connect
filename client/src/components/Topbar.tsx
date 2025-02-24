@@ -6,7 +6,7 @@ import SignInOAuthButtons from "./SignInOAuthButtons";
 const Topbar = () => {
     const isAdmin = false;
     return (
-    <div className="flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 backdrop-blur-md z-10">
+    <div className="flex items-center justify-between p-4 sticky top-0 bg-zinc-900 border-zinc-800 backdrop-blur-md z-10 rounded-lg">
         <div className="flex gap-2 items-center hover:transition-colors cursor-pointer">
             <BoomBox size={45} strokeWidth={2.5} className="animate-pulse text-orange-500 shadow-md" />
             <h1 className="text-lg font-bold text-gray-300">Echo Connect</h1>
