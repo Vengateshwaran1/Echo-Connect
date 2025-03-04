@@ -34,7 +34,7 @@ const AuthProvider = ({children}:{children:React.ReactNode}) => {
     if (loading) {
         return (
             <div className="h-screen w-full flex justify-center items-center">
-                <Disc3 strokeWidth={2.5} absoluteStrokeWidth  className="size-20 animate-spin text-orange-500 shadow-md" />
+                <Disc3 strokeWidth={2.5} absoluteStrokeWidth  className="size-20 animate-spin text-purple-500 shadow-md" />
             </div>
         );
     }
