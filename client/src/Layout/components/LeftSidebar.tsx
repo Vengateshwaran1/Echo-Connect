@@ -67,7 +67,7 @@ const LeftSidebar = () => {
                   >
                     <img src={album.imageUrl} alt="playlist img" className="size-12 rounded-md flex-shrink-0 object-cover"/>
                       <div className="flex-1 min-w-0 hidden md:block">
-                        <p className="truncate font-medium">{album.title}</p>
+                        <p className="font-medium truncate">{album.title}</p>
                         <p className="text-gray-300 text-sm truncate">Album • {album.artist}</p>
                       </div>
                 </Link>
