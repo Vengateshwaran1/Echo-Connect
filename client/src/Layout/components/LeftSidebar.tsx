@@ -1,7 +1,6 @@
-import { buttonVariants } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import { HomeIcon, Library, MessageSquareQuoteIcon } from "lucide-react"
-import { Link } from "react-router-dom"
+import { cn } from "@/lib/utils";
+import { BoomBox, HomeIcon, Library, Menu, MessageSquareQuoteIcon } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { SignedIn } from '@clerk/clerk-react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import PlaylistSkeleton from "@/components/skeletons/PlaylistSkeleton";
@@ -9,80 +8,93 @@ import { useMusicStore } from "@/stores/useMusicStore";
 import { useEffect } from "react";
 
 const LeftSidebar = () => {
-  const {albums,fetchAlbums,isLoading} = useMusicStore();
-  useEffect(()=>{
-    fetchAlbums()
-  },[fetchAlbums]);
+  const { albums, fetchAlbums, isLoading } = useMusicStore();
+  const location = useLocation();
 
-  console.log({albums});
+  useEffect(() => {
+    fetchAlbums();
+  }, [fetchAlbums]);
 
   return (
-    <div className="h-full flex flex-col gap-2">
-      <div className="rounded-lg bg-linear-to-bl from-[#360033] to-[#0b8793] p-4">
-        <div className="space-y-2 ">
-          <Link to={"/"} 
-            className={cn(buttonVariants(
-            {
-              variant:"ghost",
-              className:"w-full justify-start text-gray-300 hover:bg-zinc-800"
-            }
-          ))}
+    <div className="h-full flex flex-col">
+      <div className="flex-1 bg-black/40 backdrop-blur-xl border-r border-purple-500/20 p-4">
+        {location.pathname !== "/" && (
+          <div className="flex items-center gap-3 px-2 mb-8">
+            <BoomBox className="h-8 w-8 text-purple-400" />
+            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 hidden md:block">
+              Echo Connect
+            </h1>
+          </div>
+        )}
+
+        <div className="space-y-2 mb-6">
+          <div className="flex px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 gap-2 items-center">
+            <Menu className="h-5 w-5" />
+            <span className="hidden md:inline">Menu</span>
+          </div>
+          <Link to={"/"}
+            className={cn(
+              "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:text-white hover:bg-purple-500/20"
+            )}
           >
-            <HomeIcon className="mr-2 size-5"/>
+            <HomeIcon className="h-5 w-5" />
             <span className="hidden md:inline">Home</span>
           </Link>
+
           <SignedIn>
-          <Link to={"/chat"} 
-            className={cn(buttonVariants(
-            {
-              variant:"ghost",
-              className:"w-full justify-start text-gray-300 hover:bg-zinc-800"
-            }
-            
-          ))}
-          >
-            <MessageSquareQuoteIcon className="mr-2 size-5"/>
-            <span className="hidden md:inline">Message</span>
-          </Link>
+            <Link to={"/chat"}
+              className={cn(
+                "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:text-white hover:bg-purple-500/20"
+              )}
+            >
+              <MessageSquareQuoteIcon className="h-5 w-5" />
+              <span className="hidden md:inline">Message</span>
+            </Link>
           </SignedIn>
         </div>
-      </div>
 
-      <div className="flex-1 rounded-lg bg-linear-to-bl from-[#360033] to-[#0b8793] p-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center text-gray-300 px-2">
-            <Library className="size-5 mr-2"/>
-            <span className="hidden md:inline">Playlists</span>
+        <div className="space-y-4">
+          <div className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 mb-2">
+              <Library className="h-5 w-5" />
+              <span className="hidden md:inline">Playlists</span>
+            </div>
           </div>
         </div>
-        
-        <ScrollArea className="h-[calc(100vh-300px)] ">
-          <div className="space-y-2 ">
-            {isLoading ? (<PlaylistSkeleton />) : (
+        <ScrollArea className="h-[calc(100vh-300px)] mt-2">
+          <div className="space-y-2">
+            {isLoading ? (
+              <PlaylistSkeleton />
+            ) : (
               albums.map((album) => (
-                <div className="w-full animate-rotate-border max-w-sm transition-all duration-500 ease-out transform-3d  rounded-lg cursor-pointer hover:scale-[1.03] hover:bg-conic/[from_var(--border-angle)] from-black via-purple-500 to-black from-80% via-90% to-100% p-px">
-                <Link to={`/albums/${album._id}`}
-                  key={album._id}
-                  className="p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer"
+                <div key={album._id} className="mt-4 group relative gap-4">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-400"></div>
+                  <Link
+                    to={`/albums/${album._id}`}
+                    className="relative flex items-center gap-3 p-2 rounded-lg bg-black/40 backdrop-blur-sm hover:bg-black/60 transition duration-300"
                   >
-                    <img src={album.imageUrl} alt="playlist img" className="size-12 rounded-md flex-shrink-0 object-cover"/>
-                      <div className="flex-1 min-w-0 hidden md:block">
-                        <p className="font-medium truncate">{album.title}</p>
-                        <p className="text-gray-300 text-sm truncate">Album • {album.artist}</p>
-                      </div>
-                </Link>
+                    <img
+                      src={album.imageUrl}
+                      alt={album.title}
+                      className="h-12 w-12 rounded-md object-cover"
+                    />
+                    <div className="flex-1 min-w-0 hidden md:block">
+                      <p className="font-medium text-gray-200 truncate">
+                        {album.title}
+                      </p>
+                      <p className="text-gray-400 text-sm truncate">
+                        Album • {album.artist}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               ))
             )}
-
           </div>
-
-
         </ScrollArea>
-
       </div>
     </div>
-  )
+  );
 }
 
-export default LeftSidebar
+export default LeftSidebar;
