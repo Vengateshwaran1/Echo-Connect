@@ -88,7 +88,7 @@ const AlbumPage = () => {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-10 py-2 text-sm text-zinc-400 border-b border-white/5 bg-zinc-900">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-10 py-2 text-sm text-zinc-400 border-b border-white/5 bg-black/20">
               {currentAlbum?.songs.map((song, index) => {
                 const isCurrentSong = currentSong?._id === song._id;
                 return (

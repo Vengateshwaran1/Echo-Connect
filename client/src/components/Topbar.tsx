@@ -14,12 +14,11 @@ const Topbar = () => {
             Echo Connect
           </h1>
         </div>
-   
       <div className="flex items-center gap-4">
         {isAdmin && (
-          <Link to={"/admin"} className="flex items-center rounded-xl bg-gradient-to-l from-amber-400 to-black p-1 text-md border hover:border-amber-400 ">
-            <LayoutDashboardIcon className="size-4 mr-2" />
-            Admin dashboard
+          <Link to={"/admin"} className="flex items-center rounded-xl bg-gradient-to-t from-gray-400  p-1 text-sm border hover:border-gray-400 hover:scale-105">
+            <LayoutDashboardIcon className="size-5 mr-2" />
+              Admin dashboard
           </Link>
         )}
 

@@ -17,7 +17,7 @@ const LeftSidebar = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex-1 bg-black/40 backdrop-blur-xl border-r border-purple-500/20 p-4">
+      <div className="flex-1 bg-black/40 backdrop-blur-xl border-r border-purple-800 p-4">
         {location.pathname !== "/" && (
           <div className="flex items-center gap-3 px-2 mb-8">
             <BoomBox className="h-8 w-8 text-purple-400" />

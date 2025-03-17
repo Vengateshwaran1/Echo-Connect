@@ -16,8 +16,8 @@ const PlayButton = ({ song }: { song: Song }) => {
 		<Button
 			size={"icon"}
 			onClick={handlePlay}
-			className={`absolute flex items-center right-2 bg-gradient-to-r from-purple-400 to-pink-500 hover:scale-105 transition-all 
-				opacity-0 translate-y-2 group-hover:translate-y-0 rounded-3xl ${
+			className={`absolute flex bg-gradient-to-r from-purple-400 to-pink-500 hover:scale-105 transition-all
+				opacity-0 translate-y-2 group-hover:translate-y-0 rounded-3xl right-2 bottom-3 ${
 					isCurrentSong ? "opacity-100" : "opacity-0 group-hover:opacity-100"
 				}`}
 		>

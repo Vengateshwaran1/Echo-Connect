@@ -62,7 +62,8 @@ export const PlaybackControls = () => {
   };
 
   return (
-    <footer className="h-20 sm:h-24 bg-purple-500/10 border-t border-purple-500/20 px-4">
+
+    <footer className="h-20 sm:h-24  border-t border-purple-800 px-4">
       <div className="z-10 flex justify-between items-center h-full max-w-[1800px] mx-auto">
         <div className="hidden sm:flex items-center gap-4 min-w-[180px] w-[30%]">
           {currentSong && (
